@@ -1,0 +1,74 @@
+//   Basic command
+
+db       --> to check current database
+
+show dbs        --> it shows all the database avialable in the system
+
+use database        -->  if the database name mydata is exist then it will switch into that database if its not exist it will first create and then switch into that database
+
+db.databasename.cerateCollection("collection name")     ----> after swiching on database we have to create collection .
+
+show collections        --> shows all the avialable collections inside the database
+
+
+
+
+// Crud Opertations with exaples
+
+
+sample json file that is used in thease problems
+
+[{
+  "id": 1,
+  "full_name": "Ilyssa Pawelek",
+  "age": 23,
+  "gender": "Female",
+  "balance": 12083.74,
+  "native": "United Kingdom",
+  "relocate_to": "France",
+  "family_members": 3
+}, {
+  "id": 2,
+  "full_name": "Niccolo Phethean",
+  "age": 22,
+  "gender": "Female",
+  "balance": 57087.13,
+  "native": "Japan",
+  "relocate_to": "Russia",
+  "family_members": 2
+}, {
+  "id": 3,
+  "full_name": "Austin Abramson",
+  "age": 41,
+  "gender": "Male",
+  "balance": 22851.32,
+  "native": "Japan",
+  "relocate_to": "France",
+  "family_members": 1
+},.....]
+
+
+
+1. All users whose gender is male:  
+ command :  db.data.find({gender:"Male"})
+
+2.Users who currently live in Japan
+ command : db.data.find({native:"Japan"})
+
+3.Users who are female and live in India
+ command : db.data.find({gender:"Female",native:"India"}).pretty()
+
+4.Users who are more than 25 years old
+ command : db.data.find({age:{$gt:25}})
+
+5. Total number of users who want to relocate to France
+command : db.data.find({relocate_to:"France"}).count()
+
+
+6. Total number of users who are from USA and want to relocate to russia, sort them by age in ascending order
+ command :  db.data.find({native:"United States"},{relocate_to:"Russia"}).count()
+
+7. get all users, sort them by total number of family member ASC and age DESC order
+ command :  db.data.aggregate([{$sort: {family_members:1, age:-1}}]).pretty()
+
+
