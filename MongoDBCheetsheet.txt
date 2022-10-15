@@ -59,6 +59,7 @@ sample json file that is used in thease problems
  command : db.data.find({native:"Japan"})
 
 3.Users who are female and live in India
+
  command : db.data.find({gender:"Female",native:"India"}).pretty()
 
 4.Users who are more than 25 years old
