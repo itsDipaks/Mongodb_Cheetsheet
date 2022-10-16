@@ -76,3 +76,73 @@ command : db.data.find({relocate_to:"France"}).count()
  command :  db.data.aggregate([{$sort: {family_members:1, age:-1}}]).pretty()
 
 
+
+
+
+
+
+//Sample data
+
+
+{
+        "id": 60,
+        "name": "Djibouti",
+        "iso3": "DJI",
+        "iso2": "DJ",
+        "numeric_code": "262",
+        "phone_code": "253",
+        "capital": "Djibouti",
+        "currency": "DJF",
+        "currency_name": "Djiboutian franc",
+        "currency_symbol": "Fdj",
+        "tld": ".dj",
+        "native": "Djibouti",
+        "region": "Africa",
+        "subregion": "Eastern Africa",
+        "timezones": [
+            {
+                "zoneName": "Africa\/Djibouti",
+                "gmtOffset": 10800,
+                "gmtOffsetName": "UTC+03:00",
+                "abbreviation": "EAT",
+                "tzName": "East Africa Time"
+            }
+        ],
+        "translations": {
+            "kr": "지부티",
+            "pt-BR": "Djibuti",
+            "pt": "Djibuti",
+            "nl": "Djibouti",
+            "hr": "Džibuti",
+            "fa": "جیبوتی",
+            "de": "Dschibuti",
+            "es": "Yibuti",
+            "fr": "Djibouti",
+            "ja": "ジブチ",
+            "it": "Gibuti",
+            "cn": "吉布提",
+            "tr": "Cibuti"
+        },
+        "latitude": "11.50000000",
+        "longitude": "43.00000000",
+        "emoji": "🇩🇯",
+        "emojiU": "U+1F1E9 U+1F1EF"
+    }
+
+
+1. Find all the countries in region "Asia"
+db.mydata.find({region:"Asia"}).pretty()
+
+2.Find all the countries with currency: "EUR"
+> db.mydata.find({currency:"EUR"}) 
+
+3.Find all the countries whose timezone's gmtOffset is 3600
+> db.mydata.find({"timezones.gmtOffset":3600}).pretty()
+ db.mydata.find({"timezones.0.gmtOffset":3600}).pretty()
+
+4.Find all the countries whose timezone's gmtOffset is 3600 AND timezone name is Central European Time (or CET
+ db.mydata.find({"timezones.0.gmtOffset":3600,"timezones.0.tzName":"Central European Time"}).pretty()
+
+5.Find All the countries with "Korean" translation (KR)
+> db.mydata.find({"translations.kr":{$exists:true}})   
+
